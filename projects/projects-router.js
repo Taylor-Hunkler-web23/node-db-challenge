@@ -109,5 +109,25 @@ router.get('/tasksall', (req, res) => {
     });
   });
 
+  
+
+  router.get('/:id/tasks', (req, res) => {
+      const {id} =req.params;
+
+    projects.gettasksbyid(id)
+    .then(tasks => {
+        const comp = tasks.map( task =>{
+            if (tasks.completed){
+                return {...task, completed:true};
+            } else {
+                return {...task, completed :false};
+            }
+        });
+      res.status(200).json(comp);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get tasks' });
+    });
+  });
 
 module.exports = router;

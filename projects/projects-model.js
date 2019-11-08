@@ -8,7 +8,8 @@ module.exports ={
     addresources,
     gettasks,
     addtasks,
-    getalltasks
+    getalltasks,
+    gettasksbyid
  }
 
  function getprojects () {
@@ -63,15 +64,15 @@ function getalltasks () {
 }
 
 
-// function gettasksbyid (id) {
-//     return db("tasks")
-//     .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
+function gettasksbyid (id) {
+    return db("tasks")
+    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
    
-//     .join("projects", "tasks.projects_id", "=", "projects.id")
-//     .where("tasks.projects_id", "=", id)
+    .join("projects", "tasks.projects_id", "=", "projects.id")
+    .where("tasks.projects_id", "=", id)
    
    
-// }
+}
 
 
 
