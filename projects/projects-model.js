@@ -50,7 +50,7 @@ function addresources (resource) {
 
 function gettasks () {
     return db("tasks")
-    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
+    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",task_notes:"tasks.notes"})
    
     .join("projects", "tasks.projects_id", "=", "projects.id")
    
@@ -66,7 +66,7 @@ function getalltasks () {
 
 function gettasksbyid (id) {
     return db("tasks")
-    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
+    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description", task_notes:"tasks.notes"})
    
     .join("projects", "tasks.projects_id", "=", "projects.id")
     .where("tasks.projects_id", "=", id)
