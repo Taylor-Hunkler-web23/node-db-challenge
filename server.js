@@ -1,11 +1,11 @@
 const express = require('express');
 
-// const RecipesRouter = require('./recipes/recipes-router.js');
+const ProjectsRouter = require('./projects/projects-router.js');
 const server = express();
 
 
 server.use(express.json());
 
-// server.use('/api/recipes', RecipesRouter);
+server.use('/api/projects', ProjectsRouter);
 
 module.exports = server;
