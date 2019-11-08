@@ -57,5 +57,32 @@ router.get('/', (req, res) => {
   });
 
 
+  router.get('/tasks', (req, res) => {
+    projects.gettasks()
+    .then(tasks => {
+        const comp = tasks.map( task =>{
+            if (tasks.completed){
+                return {...task, completed:true};
+            } else {
+                return {...task, completed :false};
+            }
+        });
+      res.status(200).json(comp);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get tasks' });
+    });
+  });
+
+
+  function gettasks (id) {
+    return db("tasks")
+    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
+   
+    .join("projects", "tasks.projects_id", "=", "projects.id")
+    .where("tasks.projects_id", "=", id)
+   
+   
+}
 
 module.exports = router;
