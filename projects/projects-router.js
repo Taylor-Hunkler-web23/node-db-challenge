@@ -35,4 +35,17 @@ router.get('/', (req, res) => {
   });
 
 
+  router.get('/resources', (req, res) => {
+    projects.getresources()
+    .then(resource => {
+      res.json(resource);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get resource' });
+    });
+  });
+
+
+
+
 module.exports = router;
