@@ -57,6 +57,19 @@ router.get('/', (req, res) => {
   });
 
 
+  
+router.post('/tasks', (req, res) => {
+    projects.addtasks(req.body)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to add tasks' });
+    });
+  });
+
+
+
   router.get('/tasks', (req, res) => {
     projects.gettasks()
     .then(tasks => {
@@ -84,5 +97,17 @@ router.get('/', (req, res) => {
    
    
 }
+
+
+router.get('/tasksall', (req, res) => {
+    projects.getalltasks()
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get all tasks' });
+    });
+  });
+
 
 module.exports = router;

@@ -6,8 +6,9 @@ module.exports ={
     addprojects,
     getresources,
     addresources,
-    gettasks
-   
+    gettasks,
+    addtasks,
+    getalltasks
  }
 
  function getprojects () {
@@ -19,6 +20,14 @@ module.exports ={
 function addprojects (project) {
     return db("projects")
     .insert(project)
+   
+   
+}
+
+
+function addtasks (task) {
+    return db("tasks")
+    .insert(task)
    
    
 }
@@ -47,16 +56,25 @@ function gettasks () {
    
 }
 
-
-function gettasksbyid (id) {
+function getalltasks () {
     return db("tasks")
-    .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
-   
-    .join("projects", "tasks.projects_id", "=", "projects.id")
-    .where("tasks.projects_id", "=", id)
    
    
 }
+
+
+// function gettasksbyid (id) {
+//     return db("tasks")
+//     .select({project_name:"projects.name", project_description:"projects.description", task_description:"tasks.description",})
+   
+//     .join("projects", "tasks.projects_id", "=", "projects.id")
+//     .where("tasks.projects_id", "=", id)
+   
+   
+// }
+
+
+
 
 // select projects.name, projects.description, * from tasks
 // join projects on tasks.projects_id = projects.id;
