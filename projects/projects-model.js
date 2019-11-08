@@ -2,12 +2,20 @@
 const db = require('../data/seeds/db-config.js')
 
 module.exports ={
-    get
+    getprojects,
+    addprojects
    
  }
 
- function get () {
+ function getprojects () {
     return db("projects")
+   
+   
+}
+
+function addprojects (project) {
+    return db("projects")
+    .insert(project)
    
    
 }

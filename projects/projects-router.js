@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    projects.get()
+    projects.getprojects()
     .then(projects => {
         const comp = projects.map( project =>{
             if (project.completed){
@@ -22,6 +22,17 @@ router.get('/', (req, res) => {
     });
   });
 
+
+
+  router.post('/', (req, res) => {
+    projects.addprojects(req.body)
+    .then(project => {
+      res.json(project);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to add project' });
+    });
+  });
 
 
 module.exports = router;
