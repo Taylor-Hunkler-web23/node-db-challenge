@@ -45,6 +45,16 @@ router.get('/', (req, res) => {
     });
   });
 
+  
+  router.post('/resources', (req, res) => {
+    projects.addresources(req.body)
+    .then(resources => {
+      res.json(resources);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to add resources' });
+    });
+  });
 
 
 

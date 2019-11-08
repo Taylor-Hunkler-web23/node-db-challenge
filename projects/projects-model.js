@@ -4,7 +4,8 @@ const db = require('../data/seeds/db-config.js')
 module.exports ={
     getprojects,
     addprojects,
-    getresources
+    getresources,
+    addresources
    
  }
 
@@ -27,3 +28,11 @@ function getresources () {
    
    
 }
+
+function addresources (resource) {
+    return db("resources")
+    .insert(resource)
+   
+   
+}
+
